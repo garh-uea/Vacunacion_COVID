@@ -2,13 +2,13 @@
 using iTextSharp.text.pdf;  // Libreria para generar el reporte en PDF
 
 // Clase principal que gestiona la campaña de vacunación
-public class CampaniaVacunacion
+public class CampañaVacunacion
 {
     private HashSet<string> ciudadanos;          // Conjunto total de ciudadanos
     private HashSet<string> pfizer;              // Conjunto de vacunados con Pfizer
     private HashSet<string> astrazeneca;         // Conjunto de vacunados con AstraZeneca
 
-    public CampaniaVacunacion()
+    public CampañaVacunacion()
     {
         ciudadanos = new HashSet<string>();
         pfizer = new HashSet<string>();
@@ -18,19 +18,19 @@ public class CampaniaVacunacion
     // Método para generar datos ficticios
     public void GenerarDatos()
     {
-        // Se crean 500 ciudadanos ficticios
+        // Se crean 500 ciudadanos para el procesamiento de datos de Vacunación
         for (int i = 1; i <= 500; i++)
         {
             ciudadanos.Add("Ciudadano_" + i);
         }
 
-        // Se eligen 75 ciudadanos ficticios vacunados con Pfizer
+        // Se eligen 75 ciudadanos vacunados con Pfizer
         for (int i = 1; i <= 75; i++)
         {
             pfizer.Add("Ciudadano_" + i);
         }
 
-        // Se eligen 75 ciudadanos ficticios vacunados con AstraZeneca
+        // Se eligen 75 ciudadanos vacunados con AstraZeneca
         for (int i = 50; i < 125; i++) // Se incluye algunos ciudadanos con Pfizer
         {
             astrazeneca.Add("Ciudadano_" + i);
@@ -59,10 +59,10 @@ public class CampaniaVacunacion
         PdfWriter.GetInstance(documento, new FileStream(rutaArchivo, FileMode.Create));
         documento.Open();
 
-        // Título
+        // Título para el Reporte
         documento.Add(new Paragraph("REPORTE DE CAMPAÑA DE VACUNACIÓN COVID-19"));
         documento.Add(new Paragraph("Ministerio de Salud - Gobierno Nacional"));
-        documento.Add(new Paragraph("========================================\n"));
+        documento.Add(new Paragraph("==============================================\n"));
 
         // Ciudadanos no vacunados
         documento.Add(new Paragraph("1. Ciudadanos No vacunados: " + noVacunados.Count));
@@ -98,14 +98,14 @@ class ProgramaVacunacion
 {
     static void Main()
     {
-        // Se crea el objeto que maneja la campaña
-        CampaniaVacunacion campania = new CampaniaVacunacion();
+        // Se crea el objeto que maneja la campaña de vacunicación
+        CampañaVacunacion campaña = new CampañaVacunacion();
 
-        // Generar los datos ficticios
-        campania.GenerarDatos();
+        // Genera los datos para el Reporte
+        campaña.GenerarDatos();
 
-        // Generar el reporte en PDF
-        string ruta = "ReporteVacunacion.pdf";
-        campania.GenerarReportePDF(ruta);
+        // Genera el reporte en PDF
+        string ruta = "Reporte_Vacunacion.pdf";
+        campaña.GenerarReportePDF(ruta);
     }
 }
